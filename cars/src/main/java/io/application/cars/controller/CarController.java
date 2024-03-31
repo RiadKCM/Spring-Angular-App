@@ -1,11 +1,12 @@
 package io.application.cars.controller;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +34,7 @@ public class CarController {
     }
 
     @GetMapping("/car/{id}")
-    public Optional<Car> getCar(Long id){
+    public Car getCar(Long id){
         return carService.getCar(id);
     }
 
@@ -42,8 +43,21 @@ public class CarController {
         carService.deleteCars();
     }
 
+    @DeleteMapping("/car/{id}")
+    public ResponseEntity<?> deleteCar(@PathVariable Long id) {
+        boolean isDeleted = carService.deleteCar(id);
+        if (!isDeleted) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().build();
+    }
+
     @PutMapping("/car/{id}")
-    public void updatecar(Long id,@RequestBody Car car) throws Exception{
-        carService.updateCar(id, car);
+    public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car carDetails) {
+        Car updatedCar = carService.updateCar(id, carDetails);
+        if(updatedCar == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(updatedCar);
     }
 }

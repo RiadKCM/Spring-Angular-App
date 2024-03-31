@@ -2,10 +2,10 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterModule, RouterOutlet, Routes } from '@angular/router';
 import { CarService } from './car.service';
-import { response } from 'express';
-import { error } from 'console';
+import { Router } from '@angular/router';
+import { CarEditComponent } from './car-edit/car-edit.component';
 
 interface Car{
   id: number,
@@ -14,6 +14,12 @@ interface Car{
   year: number,
   color: string
 }
+
+const routes: Routes = [
+  { path: 'car-edit/:id', component: CarEditComponent, pathMatch: 'full' }
+];
+
+
 
 @Component({
   selector: 'app-root',
@@ -36,7 +42,7 @@ export class AppComponent implements OnInit{
 
   car: any
 
-  constructor(private httpClient: HttpClient, private carService : CarService, private route : ActivatedRoute){ }
+  constructor(private httpClient: HttpClient, private carService : CarService, private router : Router){ }
 
   ngOnInit(): void {
     this.httpClient.get<Car[]>("http://localhost:8080/cars").subscribe(response =>{
@@ -68,6 +74,10 @@ export class AppComponent implements OnInit{
     this.carService.deleteAllCars()
   }
 
+  deleteCar(id : number){
+    this.carService.deleteCar(id)
+  }
+
 
   loadCar(id: number): void {
     this.carService.getCarById(id).subscribe(
@@ -80,16 +90,8 @@ export class AppComponent implements OnInit{
     );
   }
 
-  updateCar(): void {
-    this.carService.updateCar(this.car.id, this.car).subscribe(
-      () => {
-        console.log('Car updated successfully');
-        // Redirigez ou effectuez d'autres actions si nécessaire après la mise à jour
-      },
-      error => {
-        console.log('Error updating car:', error);
-      }
-    );
+  navigateToCarEdit(): void {
+    this.router.navigate(['/car-edit']);
   }
 
 }

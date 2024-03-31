@@ -38,8 +38,8 @@
   <h2>Liste des voitures</h2>
   <ul>
     <li *ngFor="let car of carList">{{ car.brand }} - {{ car.model }} - {{ car.year }} - {{ car.color }}
-      <button (click)="updateCar()">Modifier</button>
-      <button>Supprimer</button>
+      <button (click)="navigateToCarEdit()">Modifier</button>
+      <button (click)="deleteCar(car.id)">Supprimer</button>
     </li>
   </ul>
 </div>
@@ -47,5 +47,3 @@
 <div *ngIf="carList.length === 0">
   <p>Aucune voiture trouvée.</p>
 </div>
-
-

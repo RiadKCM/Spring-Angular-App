@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { response } from 'express';
 import { Observable } from 'rxjs';
 
 interface Car{
@@ -16,7 +17,7 @@ interface Car{
 export class CarService {
   
   getCarById(id: number) : Observable<any>{
-    return this.httpClient.get("http://localhost:8080/car/${id}")
+    return this.httpClient.get(`http://localhost:8080/car/${id}`)
   }
 
   constructor(private httpClient: HttpClient) { }
@@ -29,7 +30,15 @@ export class CarService {
     })
   }
 
-  updateCar(id: number, carData: Car): Observable<any> {
-    return this.httpClient.put("http://localhost:8080/car/${id}", carData);
+  deleteCar(id: number){
+    return this.httpClient.delete(`http://localhost:8080/car/${id}`).subscribe(response=>{
+      console.log('response')
+    },error=>{
+      console.log(error)
+    })
+  }
+
+  updateCar(id: number, car: Car): Observable<Car> {
+    return this.httpClient.put<Car>(`http://localhost:8080/car/${id}`, car);
   }
 }
