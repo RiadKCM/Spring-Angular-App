@@ -24,3 +24,55 @@
       <button type="submit" class="btn btn-primary">Update Car</button>
     </form>
 </div>
+
+
+
+  <div class="flex min-h-screen items-center justify-center">
+    <div class="relative flex flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
+      <h4 class="mb-4 text-center font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+        Edit a car
+      </h4>
+      <p class="mb-4 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+        Enter the details.
+      </p>
+      <form [formGroup]="updateCarForm" (ngSubmit)="updateCar()" class="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+        <div class="mb-4 flex flex-col gap-6">
+          <!-- Brand -->
+          <div class="relative h-11 w-full min-w-[200px] mb-2">
+            <input type="text" id="brand" name="brand" 
+              class="input-form"
+              placeholder=" " 
+              formControlName="brand" required/>
+            <label for="brand" class="label-form">Brand</label>
+          </div>
+          <!-- Model -->
+          <div class="relative h-11 w-full min-w-[200px] mb-2">
+            <input type="text" id="model" name="model" 
+              class="input-form"
+              placeholder=" " formControlName="model" required />
+            <label for="model" class="label-form">Model</label>
+          </div>
+          <!-- Year -->
+          <div class="relative h-11 w-full min-w-[200px] mb-2">
+            <input type="number" id="year" name="year" 
+            class="input-form"
+              placeholder=" " formControlName="year" required/>
+            <label for="year" class="label-form">Year</label>
+          </div>
+          <!-- Color -->
+          <div class="relative h-11 w-full min-w-[200px] mb-2">
+            <select id="color" name="color" class="input-form" formControlName="color" required type="submit" >
+              <option value="BLUE">Blue</option>
+              <option value="RED">Red</option>
+              <option value="BLACK">Black</option>
+              <option value="WHITE">White</option>
+              <option value="GREEN">Green</option>
+            </select>
+            <label for="color" class="label-form">Color</label>
+          </div>
+        </div>
+        <button class="mt-6 block w-full select-none rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40">Edit</button>
+      </form>
+    </div>
+  </div>
+  

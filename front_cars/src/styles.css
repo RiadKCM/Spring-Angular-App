@@ -1,1 +1,128 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.label-form {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: -1.5rem;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: tight;
+    color: #64748b;
+    transition: all;
+}
+
+.label-form::before {
+    pointer-events: none;
+    margin-top: 6.5px;
+    margin-right: 1rem;
+    box-sizing: border-box;
+    display: block;
+    height: 1.5rem;
+    width: 2.5rem;
+    border-top: 1px solid #cbd5e0;
+    border-left: 1px solid #cbd5e0;
+    border-radius: 4px 0 0 0;
+    transition: all;
+}
+
+.label-form::after {
+    pointer-events: none;
+    margin-top: 6.5px;
+    margin-left: 1rem;
+    box-sizing: border-box;
+    display: block;
+    height: 1.5rem;
+    width: 2.5rem;
+    flex-grow: 1;
+    border-top: 1px solid #cbd5e0;
+    border-right: 1px solid #cbd5e0;
+    border-radius: 0 4px 0 0;
+    transition: all;
+}
+
+.label-form::placeholder {
+    font-size: 11px;
+    line-height: 4.1rem;
+    color: #64748b;
+}
+
+.label-form:focus {
+    font-size: 11px;
+    line-height: tight;
+    color: #f687b3;
+}
+
+.label-form:focus::before {
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-color: #f687b3;
+}
+
+.label-form:focus::after {
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-color: #f687b3;
+}
+
+.label-form:disabled {
+    color: transparent;
+}
+
+.label-form:disabled::before {
+    border-color: transparent;
+}
+
+.label-form:disabled::after {
+    border-color: transparent;
+}
+
+.label-form:placeholder-shown {
+    font-size: 11px;
+    line-height: 4.1rem;
+    color: #64748b;
+}
+
+
+.input-form {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 0.75rem;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #4a5568;
+    border-radius: 0.375rem;
+    border: 1px solid #cbd5e0;
+    background-color: transparent;
+    outline: none;
+    transition: all;
+}
+
+.input-form::placeholder {
+    color: #a0aec0;
+}
+
+.input-form:focus {
+    border-width: 2px;
+    border-color: #f687b3;
+    border-top-color: transparent;
+    outline: none;
+}
+
+.input-form:placeholder-shown {
+    border: 1px solid #cbd5e0;
+    border-top: 1px solid #cbd5e0;
+}
+
+.input-form:focus::placeholder {
+    color: transparent;
+}

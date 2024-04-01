@@ -42,6 +42,7 @@ export class CarPostComponent implements OnInit{
   ngOnInit(): void {
     this.httpClient.get<Car[]>("http://localhost:8080/cars").subscribe(response =>{
       this.carList = response
+      console.log(response)
     }
     ,error =>{
       console.log('error')
@@ -58,12 +59,13 @@ export class CarPostComponent implements OnInit{
     };
   
     this.httpClient.post("http://localhost:8080/car", carData).subscribe(response => {
-      console.log('ok');
+      console.log(this.idName);
     }, error => {
       console.log('error');
     });
     console.log('saved');
     this.router.navigateByUrl("/")
+    this.ngOnInit()
   }
 
 

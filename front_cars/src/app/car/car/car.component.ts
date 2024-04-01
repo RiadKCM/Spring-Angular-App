@@ -47,10 +47,12 @@ export class CarComponent implements OnInit{
 
   deleteAllCars():void{
     this.carService.deleteAllCars()
+    this.ngOnInit()
   }
 
   deleteCar(id : number){
     this.carService.deleteCar(id)
+    this.ngOnInit()
   }
 
 }

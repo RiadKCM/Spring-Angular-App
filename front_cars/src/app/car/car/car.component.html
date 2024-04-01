@@ -1,22 +1,70 @@
-<h1>Mon application de voiture</h1>
-
-
-<button routerLink="/car-post">Ajouter une voiture</button>
-
-
-<button (click)="deleteAllCars()">Supprimer toutes les voitures</button>
-
-
-<div *ngIf="carList.length > 0">
+<div *ngIf="carList.length > 0" class="text-center mt-10 mb-4 text-3xl">
   <h2>Liste des voitures</h2>
-  <ul>
-    <li *ngFor="let car of carList">{{ car.brand }} - {{ car.model }} - {{ car.year }} - {{ car.color }}
-      <button routerLink="/car-edit/{{ car.id }}">Modifier</button>
-      <button (click)="deleteCar(car.id)">Supprimer</button>
-    </li>
-  </ul>
 </div>
 
 <div *ngIf="carList.length === 0">
   <p>Aucune voiture trouvée.</p>
+</div>
+
+
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <div class="flex justify-end mb-4">
+        <button class="rounded-lg bg-green-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true" routerLink="/car-post">Ajouter une voiture</button>
+      </div>
+      <div class="overflow-hidden">
+        <table class="min-w-full border">
+          <thead class="bg-white border-b">
+            <tr>
+              <th scope="col" class="border font-medium text-gray-900 px-6 py-4 text-left">
+                #
+              </th>
+              <th scope="col" class="border font-medium text-gray-900 px-6 py-4 text-left">
+                Brand
+              </th>
+              <th scope="col" class="border font-medium text-gray-900 px-6 py-4 text-left">
+                Model
+              </th>
+              <th scope="col" class="border font-medium text-gray-900 px-6 py-4 text-left">
+                Year
+              </th>
+              <th scope="col" class="border font-medium text-gray-900 px-6 py-4 text-left">
+                Color
+              </th>
+              <th scope="col" class="border font-medium text-gray-900 px-6 py-4 text-center">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let car of carList">
+            <tr class="bg-gray-100 border-b">
+              <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ car.id }}</td>
+              <td class="border text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                {{car.brand}}
+              </td>
+              <td class="border text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                {{car.model}}
+              </td>
+              <td class="border text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                {{car.year}}
+              </td>
+              <td class="border text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                {{car.color}}
+              </td>
+              <td class="border text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap text-center">
+                <button class="middle none center mr-4 rounded-lg bg-blue-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                data-ripple-light="true" routerLink="/car-edit/{{ car.id }}">Modifier</button>
+                <button class="middle none center mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                data-ripple-light="true" (click)="deleteCar(car.id)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="flex justify-end mb-4">
+        <button class="mt-4 rounded-lg bg-orange-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" data-ripple-light="true" (click)="deleteAllCars()">Supprimer toutes les voitures</button>
+        </div>
+    </div>
+  </div>
 </div>

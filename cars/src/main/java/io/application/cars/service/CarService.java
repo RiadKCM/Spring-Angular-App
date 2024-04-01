@@ -16,7 +16,10 @@ public class CarService {
     private final CarRepository carRepository;
 
     public Car addCar(Car car){
-        return carRepository.save(car);
+        System.out.println("Ajout d'une nouvelle voiture...");
+        Car savedCar = carRepository.save(car);
+        System.out.println("L'ID de la nouvelle voiture est : " + savedCar.getId());
+        return savedCar;
     }
 
     public List<Car> getCars(){
