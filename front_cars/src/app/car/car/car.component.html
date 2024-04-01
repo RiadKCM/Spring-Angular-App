@@ -1,0 +1,22 @@
+<h1>Mon application de voiture</h1>
+
+
+<button routerLink="/car-post">Ajouter une voiture</button>
+
+
+<button (click)="deleteAllCars()">Supprimer toutes les voitures</button>
+
+
+<div *ngIf="carList.length > 0">
+  <h2>Liste des voitures</h2>
+  <ul>
+    <li *ngFor="let car of carList">{{ car.brand }} - {{ car.model }} - {{ car.year }} - {{ car.color }}
+      <button routerLink="/car-edit/{{ car.id }}">Modifier</button>
+      <button (click)="deleteCar(car.id)">Supprimer</button>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="carList.length === 0">
+  <p>Aucune voiture trouvée.</p>
+</div>

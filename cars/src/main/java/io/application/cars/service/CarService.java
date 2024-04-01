@@ -48,14 +48,8 @@ public class CarService {
         }
     }
 
-    public Car updateCar(Long id, Car carDetails) {
-        return carRepository.findById(id).map(car -> {
-            car.setBrand(carDetails.getBrand());
-            car.setModel(carDetails.getModel());
-            car.setYear(carDetails.getYear());
-            car.setColor(carDetails.getColor());
-            return carRepository.save(car);
-        }).orElse(null);
+    public Car updateCar(Car car) {
+        return carRepository.save(car);
     }
 
 }

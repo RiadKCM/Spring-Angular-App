@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { response } from 'express';
 import { Observable } from 'rxjs';
 
 interface Car{
@@ -8,7 +7,7 @@ interface Car{
   brand: string,
   model: string,
   year: number,
-  color: string
+  color: string 
 }
 
 @Injectable({
@@ -38,7 +37,7 @@ export class CarService {
     })
   }
 
-  updateCar(id: number, car: Car): Observable<Car> {
-    return this.httpClient.put<Car>(`http://localhost:8080/car/${id}`, car);
+  updateCar(id: number, car : any): Observable<any>{
+    return this.httpClient.put(`http://localhost:8080/car/${id}`,car);
   }
 }

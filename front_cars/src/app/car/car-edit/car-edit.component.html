@@ -1,6 +1,6 @@
 <div class="container">
     <h2>Edit Car</h2>
-    <form >
+    <form [formGroup]="updateCarForm" (ngSubmit)="updateCar()">
       <div class="form-group">
         <label for="brand">Brand</label>
         <input type="text" id="brand" class="form-control" formControlName="brand" required>
@@ -21,9 +21,6 @@
         <input type="text" id="color" class="form-control" formControlName="color" required>
       </div>
   
-      <button type="submit" class="btn btn-primary" [disabled]="!carForm.valid">Update Car</button>
+      <button type="submit" class="btn btn-primary">Update Car</button>
     </form>
 </div>
-  
-
-  <!-- [formGroup]="carForm" (ngSubmit)="updateCar()" -->

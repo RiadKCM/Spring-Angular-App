@@ -34,8 +34,11 @@ public class CarController {
     }
 
     @GetMapping("/car/{id}")
-    public Car getCar(Long id){
-        return carService.getCar(id);
+    public ResponseEntity<Car> getCar(@PathVariable Long id){
+        Car car = carService.getCar(id);
+        if(car == null)
+            return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(car);
     }
 
     @DeleteMapping("/cars")
@@ -54,10 +57,15 @@ public class CarController {
 
     @PutMapping("/car/{id}")
     public ResponseEntity<Car> updateCar(@PathVariable Long id, @RequestBody Car carDetails) {
-        Car updatedCar = carService.updateCar(id, carDetails);
-        if(updatedCar == null) {
+        Car existingCar = carService.getCar(id);
+        if(existingCar == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(updatedCar);
+        existingCar.setBrand(carDetails.getBrand());
+        existingCar.setModel(carDetails.getModel());
+        existingCar.setYear(carDetails.getYear());
+        existingCar.setColor(carDetails.getColor());
+        Car updateCar = carService.updateCar(existingCar);
+        return ResponseEntity.ok(updateCar);
     }
 }
